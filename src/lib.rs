@@ -28,6 +28,7 @@ mod tests {
         ];
         assert_eq!(["Shogun".to_string()].to_vec(), find_restaurant(v1, v2));
     }
+    
     #[test]
     fn test_2044() {
         let v = vec![3, 2, 1, 5];

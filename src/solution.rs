@@ -190,5 +190,21 @@ impl TreeNode {
 }
 #[allow(unused)]
 pub fn tree2str(root: Option<Rc<RefCell<TreeNode>>>) -> String {
-    String::from("test")
+    match root {
+        Some(root) => {
+            let mut node = root.borrow_mut();
+            let mut ans = node.val.to_string();
+
+            let ls = tree2str(node.left.take());
+            let rs = tree2str(node.right.take());
+
+            if rs.len() > 0 {
+                ans.push_str(&format!("({})({})", ls, rs));
+            } else if rs.len() == 0 && ls.len() > 0 {
+                ans.push_str(&format!("({})", ls));
+            }
+            ans
+        }
+        None => "".to_string(),
+    }
 }
