@@ -211,9 +211,9 @@ pub fn tree2str(root: Option<Rc<RefCell<TreeNode>>>) -> String {
 
 #[allow(unused)]
 pub fn winner_of_game(colors: String) -> bool {
-    let v: Vec<char> = colors.chars().collect();
     let mut a_cnt = 0;
     let mut b_cnt = 0;
+    let v: Vec<char> = colors.chars().collect();
     for i in 1..v.len() - 1 {
         if v[i - 1] == 'A' && v[i] == 'A' && v[i + 1] == 'A' {
             a_cnt += 1;
@@ -222,4 +222,24 @@ pub fn winner_of_game(colors: String) -> bool {
         }
     }
     a_cnt > b_cnt
+}
+
+#[allow(unused)]
+// 没达到题目要求嗷 log(m + n)
+pub fn find_median_sorted_arrays(mut nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
+    nums1.extend(nums2.iter());
+    nums1.sort();
+    let len = nums1.len();
+    match len % 2 {
+        0 => (nums1[len / 2 - 1] as f64 + nums1[len / 2] as f64) / 2.0,
+        1 => nums1[len / 2] as f64,
+        _ => 0.0,
+    }
+}
+
+// pub fn find_median_sorted_arrays(mut nums1: Vec<i32>, mut nums2: Vec<i32>) -> f64 {}
+
+#[allow(unused)]
+pub fn intersect(nums1: Vec<i32>, nums2: Vec<i32>) -> Vec<i32> {
+    vec![0]
 }

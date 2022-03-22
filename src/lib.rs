@@ -113,4 +113,16 @@ mod tests {
         assert_eq!(winner_of_game(String::from("AA")), false);
         assert_eq!(winner_of_game(String::from("ABBBBBBBAAA")), false);
     }
+
+    #[test]
+    fn test_004() {
+        assert_eq!(find_median_sorted_arrays(vec![1, 3], vec![2]), 2.0);
+        assert_eq!(find_median_sorted_arrays(vec![1, 2], vec![3, 4]), 2.5);
+    }
+
+    #[test]
+    fn test_350() {
+        assert_eq!(intersect(vec![1, 2, 2, 1], vec![2, 2]), vec![2, 2]);
+        assert_eq!(intersect(vec![4, 9, 5], vec![9, 4, 9, 8, 4]), vec![4, 9]);
+    }
 }
