@@ -28,7 +28,6 @@ mod tests {
         ];
         assert_eq!(["Shogun".to_string()].to_vec(), find_restaurant(v1, v2));
     }
-    
     #[test]
     fn test_2044() {
         let v = vec![3, 2, 1, 5];
@@ -106,5 +105,12 @@ mod tests {
         let tree = Some(tree);
 
         assert_eq!(tree2str(tree), "1(2()(4))(3)".to_string());
+    }
+
+    #[test]
+    fn test_2037() {
+        assert_eq!(winner_of_game(String::from("AAABABB")), true);
+        assert_eq!(winner_of_game(String::from("AA")), false);
+        assert_eq!(winner_of_game(String::from("ABBBBBBBAAA")), false);
     }
 }

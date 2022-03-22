@@ -208,3 +208,18 @@ pub fn tree2str(root: Option<Rc<RefCell<TreeNode>>>) -> String {
         None => "".to_string(),
     }
 }
+
+#[allow(unused)]
+pub fn winner_of_game(colors: String) -> bool {
+    let v: Vec<char> = colors.chars().collect();
+    let mut a_cnt = 0;
+    let mut b_cnt = 0;
+    for i in 1..v.len() - 1 {
+        if v[i - 1] == 'A' && v[i] == 'A' && v[i + 1] == 'A' {
+            a_cnt += 1;
+        } else if v[i - 1] == 'B' && v[i] == 'B' && v[i + 1] == 'B' {
+            b_cnt += 1;
+        }
+    }
+    a_cnt > b_cnt
+}
