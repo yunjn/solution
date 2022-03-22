@@ -1,4 +1,9 @@
-use std::collections::HashMap;
+use std::cell::RefCell;
+use std::cmp::max;
+use std::collections::{HashMap, HashSet};
+use std::iter::FromIterator;
+use std::rc::Rc;
+
 #[allow(unused)]
 pub fn valid_utf8(data: Vec<i32>) -> bool {
     data.iter().fold(0, |bit_idx, curr_num| match bit_idx {
@@ -61,6 +66,7 @@ pub fn count_max_or_subsets_1(nums: Vec<i32>) -> i32 {
     for it in nums.iter() {
         max |= it;
     }
+
     let mut cnt: i32 = 0;
     let mut cur: i32 = 0;
 
@@ -105,7 +111,6 @@ pub fn search(nums: Vec<i32>, target: i32) -> i32 {
     }
 }
 
-use std::cmp::max;
 #[allow(unused)]
 pub fn length_of_longest_substring(s: String) -> i32 {
     match s.len() {
@@ -136,8 +141,6 @@ pub fn search_insert(nums: Vec<i32>, target: i32) -> i32 {
     return len as i32;
 }
 
-use std::collections::HashSet;
-// use std::iter::FromIterator;
 #[allow(unused)]
 pub fn contains_duplicate_2(nums: Vec<i32>) -> bool {
     let len = nums.len();
@@ -167,9 +170,6 @@ pub fn contains_duplicate(nums: Vec<i32>) -> bool {
     nums.iter().any(|&x| !set.insert(x))
 }
 
-use std::cell::RefCell;
-use std::rc::Rc;
-
 #[derive(Debug, PartialEq, Eq)]
 pub struct TreeNode {
     pub val: i32,
@@ -188,6 +188,7 @@ impl TreeNode {
         }
     }
 }
+
 #[allow(unused)]
 pub fn tree2str(root: Option<Rc<RefCell<TreeNode>>>) -> String {
     match root {

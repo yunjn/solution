@@ -1,15 +1,15 @@
 mod solution;
 
 #[cfg(test)]
-mod tests {
+mod solution_tests {
     use super::solution::*;
+    use std::cell::RefCell;
+    use std::rc::Rc;
 
     #[test]
     fn test_393() {
-        let v1 = vec![197, 130, 1];
-        assert_eq!(valid_utf8(v1), true);
-        let v2 = vec![235, 140, 4];
-        assert_eq!(valid_utf8(v2), false);
+        assert_eq!(valid_utf8(vec![197, 130, 1]), true);
+        assert_eq!(valid_utf8(vec![235, 140, 4]), false);
     }
 
     #[test]
@@ -26,34 +26,25 @@ mod tests {
             "Hungry Hunter Steakhouse".to_string(),
             "Shogun".to_string(),
         ];
-        assert_eq!(["Shogun".to_string()].to_vec(), find_restaurant(v1, v2));
+        assert_eq!(vec!["Shogun".to_string()], find_restaurant(v1, v2));
     }
     #[test]
     fn test_2044() {
-        let v = vec![3, 2, 1, 5];
-        assert_eq!(count_max_or_subsets(v), 6);
-
-        let v = vec![2, 2, 2];
-        assert_eq!(count_max_or_subsets(v), 7);
+        assert_eq!(count_max_or_subsets(vec![2, 2, 2]), 7);
+        assert_eq!(count_max_or_subsets(vec![3, 2, 1, 5]), 6);
     }
 
     #[test]
     fn test_704() {
-        let nums = vec![-1, 0, 3, 5, 9, 12];
-        assert_eq!(search(nums, 9), 4);
-
-        let nums = vec![-1, 0, 3, 5, 9, 12];
-        assert_eq!(search(nums, 2), -1);
+        assert_eq!(search(vec![-1, 0, 3, 5, 9, 12], 9), 4);
+        assert_eq!(search(vec![-1, 0, 3, 5, 9, 12], 2), -1);
     }
 
     #[test]
     fn test_003() {
-        let s1 = String::from("abcabcbb");
-        assert_eq!(length_of_longest_substring(s1), 3);
-        let s2 = String::from("bbbbb");
-        assert_eq!(length_of_longest_substring(s2), 1);
-        let s3 = String::from("pwwkew");
-        assert_eq!(length_of_longest_substring(s3), 3);
+        assert_eq!(length_of_longest_substring("bbbbb".to_string()), 1);
+        assert_eq!(length_of_longest_substring("pwwkew".to_string()), 3);
+        assert_eq!(length_of_longest_substring("abcabcbb".to_string()), 3);
     }
 
     #[test]
@@ -72,12 +63,10 @@ mod tests {
 
     #[test]
     fn test_606() {
-        use std::cell::RefCell;
-        use std::rc::Rc;
-        let tree = Some(Rc::new(RefCell::new(TreeNode::new(1))));
         let r = Some(Rc::new(RefCell::new(TreeNode::new(3))));
         let l = Some(Rc::new(RefCell::new(TreeNode::new(2))));
         let ll = Some(Rc::new(RefCell::new(TreeNode::new(4))));
+        let tree = Some(Rc::new(RefCell::new(TreeNode::new(1))));
 
         let l1 = l.unwrap();
         l1.borrow_mut().left = ll;
@@ -90,10 +79,10 @@ mod tests {
 
         assert_eq!(tree2str(tree), "1(2(4))(3)".to_string());
 
-        let tree = Some(Rc::new(RefCell::new(TreeNode::new(1))));
         let r = Some(Rc::new(RefCell::new(TreeNode::new(3))));
         let l = Some(Rc::new(RefCell::new(TreeNode::new(2))));
         let lr = Some(Rc::new(RefCell::new(TreeNode::new(4))));
+        let tree = Some(Rc::new(RefCell::new(TreeNode::new(1))));
 
         let l = l.unwrap();
         l.borrow_mut().right = lr;
@@ -109,9 +98,9 @@ mod tests {
 
     #[test]
     fn test_2037() {
-        assert_eq!(winner_of_game(String::from("AAABABB")), true);
-        assert_eq!(winner_of_game(String::from("AA")), false);
-        assert_eq!(winner_of_game(String::from("ABBBBBBBAAA")), false);
+        assert_eq!(winner_of_game("AA".to_string()), false);
+        assert_eq!(winner_of_game("AAABABB".to_string()), true);
+        assert_eq!(winner_of_game("ABBBBBBBAAA".to_string()), false);
     }
 
     #[test]
