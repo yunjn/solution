@@ -7,13 +7,13 @@ mod solution_tests {
     use std::rc::Rc;
 
     #[test]
-    fn test_393() {
+    fn test_0393() {
         assert_eq!(valid_utf8(vec![197, 130, 1]), true);
         assert_eq!(valid_utf8(vec![235, 140, 4]), false);
     }
 
     #[test]
-    fn test_599() {
+    fn test_0599() {
         let v1 = vec![
             "Shogun".to_string(),
             "Tapioca Express".to_string(),
@@ -28,6 +28,7 @@ mod solution_tests {
         ];
         assert_eq!(vec!["Shogun".to_string()], find_restaurant(v1, v2));
     }
+
     #[test]
     fn test_2044() {
         assert_eq!(count_max_or_subsets(vec![2, 2, 2]), 7);
@@ -35,34 +36,34 @@ mod solution_tests {
     }
 
     #[test]
-    fn test_704() {
+    fn test_0704() {
         assert_eq!(search(vec![-1, 0, 3, 5, 9, 12], 9), 4);
         assert_eq!(search(vec![-1, 0, 3, 5, 9, 12], 2), -1);
     }
 
     #[test]
-    fn test_003() {
+    fn test_0003() {
         assert_eq!(length_of_longest_substring("bbbbb".to_string()), 1);
         assert_eq!(length_of_longest_substring("pwwkew".to_string()), 3);
         assert_eq!(length_of_longest_substring("abcabcbb".to_string()), 3);
     }
 
     #[test]
-    fn test_035() {
+    fn test_0035() {
         assert_eq!(search_insert(vec![1, 3, 5, 6], 5), 2);
         assert_eq!(search_insert(vec![1, 3, 5, 6], 2), 1);
         assert_eq!(search_insert(vec![1, 3, 5, 6], 7), 4);
     }
 
     #[test]
-    fn test_217() {
+    fn test_0217() {
         assert_eq!(contains_duplicate(vec![1, 2, 3, 1]), true);
         assert_eq!(contains_duplicate(vec![1, 2, 3, 4]), false);
         assert_eq!(contains_duplicate(vec![1, 1, 1, 3, 3, 4, 3, 2, 4, 2]), true);
     }
 
     #[test]
-    fn test_606() {
+    fn test_0606() {
         let r = Some(Rc::new(RefCell::new(TreeNode::new(3))));
         let l = Some(Rc::new(RefCell::new(TreeNode::new(2))));
         let ll = Some(Rc::new(RefCell::new(TreeNode::new(4))));
@@ -104,14 +105,43 @@ mod solution_tests {
     }
 
     #[test]
-    fn test_004() {
+    fn test_0004() {
         assert_eq!(find_median_sorted_arrays(vec![1, 3], vec![2]), 2.0);
         assert_eq!(find_median_sorted_arrays(vec![1, 2], vec![3, 4]), 2.5);
     }
 
     #[test]
-    fn test_350() {
+    fn test_0350() {
         assert_eq!(intersect(vec![1, 2, 2, 1], vec![2, 2]), vec![2, 2]);
         assert_eq!(intersect(vec![4, 9, 5], vec![9, 4, 9, 8, 4]), vec![4, 9]);
+    }
+
+    #[test]
+    fn test_0661() {
+        assert_eq!(
+            image_smoother(vec![
+                vec![1i32, 1i32, 1i32],
+                vec![1i32, 0i32, 1i32],
+                vec![1i32, 1i32, 1i32]
+            ]),
+            vec![
+                vec![0i32, 0i32, 0i32],
+                vec![0i32, 0i32, 0i32],
+                vec![0i32, 0i32, 0i32]
+            ]
+        );
+
+        assert_eq!(
+            image_smoother(vec![
+                vec![100, 200, 100],
+                vec![200, 50, 200],
+                vec![100, 200, 100]
+            ]),
+            vec![
+                vec![137, 141, 137],
+                vec![141, 138, 141],
+                vec![137, 141, 137],
+            ]
+        );
     }
 }

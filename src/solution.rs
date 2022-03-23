@@ -241,6 +241,28 @@ pub fn find_median_sorted_arrays(mut nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
 // pub fn find_median_sorted_arrays(mut nums1: Vec<i32>, mut nums2: Vec<i32>) -> f64 {}
 
 #[allow(unused)]
-pub fn intersect(nums1: Vec<i32>, nums2: Vec<i32>) -> Vec<i32> {
-    vec![0]
+pub fn intersect(mut nums1: Vec<i32>, mut nums2: Vec<i32>) -> Vec<i32> {
+    nums1.sort();
+    nums2.sort();
+    let mut i = 0;
+    let mut j = 0;
+    let mut ans = Vec::new();
+    while i < nums1.len() && j < nums2.len() {
+        if nums1[i] < nums2[j] {
+            i += 1;
+        } else if nums1[i] > nums2[j] {
+            j += 1;
+        } else {
+            ans.push(nums1[i]);
+            j += 1;
+            i += 1;
+        }
+    }
+    ans
+}
+
+#[allow(unused)]
+pub fn image_smoother(mut img: Vec<Vec<i32>>) -> Vec<Vec<i32>> {
+    let mut con = vec![vec![0, 0, 0], vec![0, 0, 0], vec![0, 0, 0]];
+    img
 }
