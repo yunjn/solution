@@ -306,3 +306,17 @@ pub fn image_smoother(img: &Vec<Vec<i32>>) -> Vec<Vec<i32>> {
     }
     ans
 }
+
+// 含有因子 10 ，也就是含有因子 2 和 5，结果为 2 或 5 数目较少的那个
+#[allow(unused)]
+pub fn trailing_zeroes(n: i32) -> i32 {
+    let mut ans = 0;
+    for i in (5..=n).step_by(5) {
+        let mut x = i;
+        while x % 5 == 0 {
+            ans += 1;
+            x /= 5;
+        }
+    }
+    ans
+}

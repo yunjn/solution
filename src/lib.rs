@@ -150,4 +150,11 @@ mod solution_tests {
         assert_eq!(image_smoother_1(&v1), v2);
         assert_eq!(image_smoother_1(&v3), v4);
     }
+
+    #[test]
+    fn test_0172() {
+        assert_eq!(trailing_zeroes(3), 0);
+        assert_eq!(trailing_zeroes(5), 1);
+        assert_eq!(trailing_zeroes(0), 0);
+    }
 }
