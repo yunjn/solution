@@ -262,7 +262,47 @@ pub fn intersect(mut nums1: Vec<i32>, mut nums2: Vec<i32>) -> Vec<i32> {
 }
 
 #[allow(unused)]
-pub fn image_smoother(mut img: Vec<Vec<i32>>) -> Vec<Vec<i32>> {
-    let mut con = vec![vec![0, 0, 0], vec![0, 0, 0], vec![0, 0, 0]];
-    img
+pub fn image_smoother_1(img: &Vec<Vec<i32>>) -> Vec<Vec<i32>> {
+    let (m, n) = (img.len(), img[0].len());
+    let mut ans = Vec::with_capacity(m);
+    for y in 0..m {
+        let mut output_row = Vec::with_capacity(n);
+        for x in 0..n {
+            let mut sum = 0;
+            let mut cnt = 0;
+            for input_row in &img[y.saturating_sub(1)..(y + 2).min(m)] {
+                for num in &input_row[x.saturating_sub(1)..(x + 2).min(n)] {
+                    sum += num;
+                    cnt += 1;
+                }
+            }
+            output_row.push(sum / cnt);
+        }
+        ans.push(output_row);
+    }
+    ans
+}
+
+#[allow(unused)]
+pub fn image_smoother(img: &Vec<Vec<i32>>) -> Vec<Vec<i32>> {
+    let (m, n) = (img.len(), img[0].len());
+    let mut ans = vec![vec![0; n]; m];
+    let mut sum = vec![vec![0; n + 10]; m + 10];
+
+    for i in 1..=m {
+        for j in 1..=n {
+            sum[i][j] = sum[i - 1][j] + sum[i][j - 1] - sum[i - 1][j - 1] + img[i - 1][j - 1];
+        }
+    }
+
+    for i in 0..m {
+        for j in 0..n {
+            let (a, b) = (0.max(i as i32 - 1) as usize, 0.max(j as i32 - 1) as usize);
+            let (c, d) = ((m - 1).min(i + 1), (n - 1).min(j + 1));
+            let cnt = (c - a + 1) * (d - b + 1);
+            let tot = sum[c + 1][d + 1] - sum[a][d + 1] - sum[c + 1][b] + sum[a][b];
+            ans[i][j] = tot / cnt as i32;
+        }
+    }
+    ans
 }

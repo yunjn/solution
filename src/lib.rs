@@ -33,6 +33,9 @@ mod solution_tests {
     fn test_2044() {
         assert_eq!(count_max_or_subsets(vec![2, 2, 2]), 7);
         assert_eq!(count_max_or_subsets(vec![3, 2, 1, 5]), 6);
+
+        assert_eq!(count_max_or_subsets_1(vec![2, 2, 2]), 7);
+        assert_eq!(count_max_or_subsets_1(vec![3, 2, 1, 5]), 6);
     }
 
     #[test]
@@ -60,6 +63,20 @@ mod solution_tests {
         assert_eq!(contains_duplicate(vec![1, 2, 3, 1]), true);
         assert_eq!(contains_duplicate(vec![1, 2, 3, 4]), false);
         assert_eq!(contains_duplicate(vec![1, 1, 1, 3, 3, 4, 3, 2, 4, 2]), true);
+
+        assert_eq!(contains_duplicate_1(vec![1, 2, 3, 1]), true);
+        assert_eq!(contains_duplicate_1(vec![1, 2, 3, 4]), false);
+        assert_eq!(
+            contains_duplicate_1(vec![1, 1, 1, 3, 3, 4, 3, 2, 4, 2]),
+            true
+        );
+
+        assert_eq!(contains_duplicate_2(vec![1, 2, 3, 1]), true);
+        assert_eq!(contains_duplicate_2(vec![1, 2, 3, 4]), false);
+        assert_eq!(
+            contains_duplicate_2(vec![1, 1, 1, 3, 3, 4, 3, 2, 4, 2]),
+            true
+        );
     }
 
     #[test]
@@ -118,30 +135,19 @@ mod solution_tests {
 
     #[test]
     fn test_0661() {
-        assert_eq!(
-            image_smoother(vec![
-                vec![1i32, 1i32, 1i32],
-                vec![1i32, 0i32, 1i32],
-                vec![1i32, 1i32, 1i32]
-            ]),
-            vec![
-                vec![0i32, 0i32, 0i32],
-                vec![0i32, 0i32, 0i32],
-                vec![0i32, 0i32, 0i32]
-            ]
-        );
+        let v1 = vec![vec![1, 1, 1], vec![1, 0, 1], vec![1, 1, 1]];
+        let v2 = vec![vec![0, 0, 0], vec![0, 0, 0], vec![0, 0, 0]];
+        let v3 = vec![vec![100, 200, 100], vec![200, 50, 200], vec![100, 200, 100]];
+        let v4 = vec![
+            vec![137, 141, 137],
+            vec![141, 138, 141],
+            vec![137, 141, 137],
+        ];
 
-        assert_eq!(
-            image_smoother(vec![
-                vec![100, 200, 100],
-                vec![200, 50, 200],
-                vec![100, 200, 100]
-            ]),
-            vec![
-                vec![137, 141, 137],
-                vec![141, 138, 141],
-                vec![137, 141, 137],
-            ]
-        );
+        assert_eq!(image_smoother(&v1), v2);
+        assert_eq!(image_smoother(&v3), v4);
+
+        assert_eq!(image_smoother_1(&v1), v2);
+        assert_eq!(image_smoother_1(&v3), v4);
     }
 }
