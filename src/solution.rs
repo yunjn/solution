@@ -1,10 +1,10 @@
+#![allow(unused)]
 use std::cell::RefCell;
 use std::cmp::max;
 use std::collections::{HashMap, HashSet};
 use std::iter::FromIterator;
 use std::rc::Rc;
 
-#[allow(unused)]
 pub fn valid_utf8(data: Vec<i32>) -> bool {
     data.iter().fold(0, |bit_idx, curr_num| match bit_idx {
         0 => {
@@ -29,7 +29,6 @@ pub fn valid_utf8(data: Vec<i32>) -> bool {
     }) == 0
 }
 
-#[allow(unused)]
 pub fn find_restaurant(list1: Vec<String>, list2: Vec<String>) -> Vec<String> {
     if list1.len() > list2.len() {
         return find_restaurant(list2, list1);
@@ -60,7 +59,6 @@ pub fn find_restaurant(list1: Vec<String>, list2: Vec<String>) -> Vec<String> {
     v
 }
 
-#[allow(unused)]
 pub fn count_max_or_subsets_1(nums: Vec<i32>) -> i32 {
     let mut max: i32 = 0;
     for it in nums.iter() {
@@ -84,7 +82,6 @@ pub fn count_max_or_subsets_1(nums: Vec<i32>) -> i32 {
     cnt
 }
 
-#[allow(unused)]
 pub fn count_max_or_subsets(nums: Vec<i32>) -> i32 {
     fn back_track(nums: &Vec<i32>, start: usize, cur: i32, max: i32, cnt: &mut i32) {
         if cur == max {
@@ -103,7 +100,6 @@ pub fn count_max_or_subsets(nums: Vec<i32>) -> i32 {
     cnt
 }
 
-#[allow(unused)]
 pub fn search(nums: Vec<i32>, target: i32) -> i32 {
     match nums.binary_search(&target) {
         Ok(num) => num as i32,
@@ -111,7 +107,6 @@ pub fn search(nums: Vec<i32>, target: i32) -> i32 {
     }
 }
 
-#[allow(unused)]
 pub fn length_of_longest_substring(s: String) -> i32 {
     match s.len() {
         0 | 1 => s.len() as i32,
@@ -130,7 +125,6 @@ pub fn length_of_longest_substring(s: String) -> i32 {
     }
 }
 
-#[allow(unused)]
 pub fn search_insert(nums: Vec<i32>, target: i32) -> i32 {
     let len = nums.len();
     for i in 0..len {
@@ -141,7 +135,6 @@ pub fn search_insert(nums: Vec<i32>, target: i32) -> i32 {
     return len as i32;
 }
 
-#[allow(unused)]
 pub fn contains_duplicate_2(nums: Vec<i32>) -> bool {
     let len = nums.len();
     let hs: HashSet<i32> = HashSet::from_iter(nums.into_iter());
@@ -152,7 +145,6 @@ pub fn contains_duplicate_2(nums: Vec<i32>) -> bool {
     }
 }
 
-#[allow(unused)]
 pub fn contains_duplicate_1(nums: Vec<i32>) -> bool {
     let mut hs = HashSet::new();
     for num in nums.iter() {
@@ -164,7 +156,6 @@ pub fn contains_duplicate_1(nums: Vec<i32>) -> bool {
     false
 }
 
-#[allow(unused)]
 pub fn contains_duplicate(nums: Vec<i32>) -> bool {
     let mut set = HashSet::new();
     nums.iter().any(|&x| !set.insert(x))
@@ -177,7 +168,6 @@ pub struct TreeNode {
     pub right: Option<Rc<RefCell<TreeNode>>>,
 }
 
-#[allow(unused)]
 impl TreeNode {
     #[inline]
     pub fn new(val: i32) -> Self {
@@ -189,7 +179,6 @@ impl TreeNode {
     }
 }
 
-#[allow(unused)]
 pub fn tree2str(root: Option<Rc<RefCell<TreeNode>>>) -> String {
     match root {
         Some(root) => {
@@ -210,7 +199,6 @@ pub fn tree2str(root: Option<Rc<RefCell<TreeNode>>>) -> String {
     }
 }
 
-#[allow(unused)]
 pub fn winner_of_game(colors: String) -> bool {
     let mut a_cnt = 0;
     let mut b_cnt = 0;
@@ -225,7 +213,6 @@ pub fn winner_of_game(colors: String) -> bool {
     a_cnt > b_cnt
 }
 
-#[allow(unused)]
 // 没达到题目要求嗷 log(m + n)
 pub fn find_median_sorted_arrays(mut nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
     nums1.extend(nums2.iter());
@@ -240,7 +227,6 @@ pub fn find_median_sorted_arrays(mut nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
 
 // pub fn find_median_sorted_arrays(mut nums1: Vec<i32>, mut nums2: Vec<i32>) -> f64 {}
 
-#[allow(unused)]
 pub fn intersect(mut nums1: Vec<i32>, mut nums2: Vec<i32>) -> Vec<i32> {
     nums1.sort();
     nums2.sort();
@@ -261,7 +247,6 @@ pub fn intersect(mut nums1: Vec<i32>, mut nums2: Vec<i32>) -> Vec<i32> {
     ans
 }
 
-#[allow(unused)]
 pub fn image_smoother_1(img: &Vec<Vec<i32>>) -> Vec<Vec<i32>> {
     let (m, n) = (img.len(), img[0].len());
     let mut ans = Vec::with_capacity(m);
@@ -283,7 +268,6 @@ pub fn image_smoother_1(img: &Vec<Vec<i32>>) -> Vec<Vec<i32>> {
     ans
 }
 
-#[allow(unused)]
 pub fn image_smoother(img: &Vec<Vec<i32>>) -> Vec<Vec<i32>> {
     let (m, n) = (img.len(), img[0].len());
     let mut ans = vec![vec![0; n]; m];
@@ -308,7 +292,6 @@ pub fn image_smoother(img: &Vec<Vec<i32>>) -> Vec<Vec<i32>> {
 }
 
 // 含有因子 10 ，也就是含有因子 2 和 5，结果为 2 或 5 数目较少的那个
-#[allow(unused)]
 pub fn trailing_zeroes(n: i32) -> i32 {
     let mut ans = 0;
     for i in (5..=n).step_by(5) {
@@ -319,4 +302,20 @@ pub fn trailing_zeroes(n: i32) -> i32 {
         }
     }
     ans
+}
+
+// 模式匹配
+pub fn cal_points(ops: Vec<String>) -> i32 {
+    let mut score: Vec<i32> = Vec::new();
+    for op in ops.iter() {
+        match op as &str {
+            "C" => {
+                score.pop();
+            }
+            "D" => score.push(score[score.len() - 1] * 2),
+            "+" => score.push(score[score.len() - 1] + score[score.len() - 2]),
+            _ => score.push(op.parse::<i32>().unwrap()),
+        }
+    }
+    score.iter().sum()
 }

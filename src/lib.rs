@@ -157,4 +157,34 @@ mod solution_tests {
         assert_eq!(trailing_zeroes(5), 1);
         assert_eq!(trailing_zeroes(0), 0);
     }
+
+    #[test]
+    fn test_682() {
+        assert_eq!(
+            cal_points(vec![
+                "5".to_string(),
+                "2".to_string(),
+                "C".to_string(),
+                "D".to_string(),
+                "+".to_string()
+            ]),
+            30
+        );
+
+        assert_eq!(
+            cal_points(vec![
+                "5".to_string(),
+                "-2".to_string(),
+                "4".to_string(),
+                "C".to_string(),
+                "D".to_string(),
+                "9".to_string(),
+                "+".to_string(),
+                "+".to_string()
+            ]),
+            27
+        );
+
+        assert_eq!(cal_points(vec!["1".to_string()]), 1);
+    }
 }
