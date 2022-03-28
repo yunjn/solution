@@ -91,10 +91,12 @@ pub fn count_max_or_subsets(nums: Vec<i32>) -> i32 {
             back_track(nums, i + 1, cur | nums[i], max, cnt);
         }
     }
+
     let max = nums.iter().fold(0, |mut max, it| {
         max |= it;
         max
     });
+
     let mut cnt = 0;
     back_track(&nums, 0, 0, max, &mut cnt);
     cnt
@@ -318,4 +320,61 @@ pub fn cal_points(ops: Vec<String>) -> i32 {
         }
     }
     score.iter().sum()
+}
+
+pub fn convert_1(s: String, num_rows: i32) -> String {
+    let num_rows = num_rows as usize;
+    if s.len() <= 2 || s.len() <= num_rows || num_rows < 2 {
+        return s;
+    }
+
+    let mut idx = 0;
+    let mut ans = String::new();
+    let mut arr = vec![String::new(); num_rows];
+
+    for (i, c) in s.chars().enumerate() {
+        arr[idx].push(c);
+        if i / (num_rows - 1) % 2 == 0 {
+            idx += 1;
+        } else {
+            idx -= 1;
+        }
+    }
+    arr.into_iter().collect()
+}
+
+// Better
+pub fn convert(s: String, num_rows: i32) -> String {
+    let num_rows = num_rows as usize;
+    let mut arr = vec![String::new(); num_rows];
+    let iter = (0..num_rows).chain((1..num_rows - 1).rev()).cycle();
+    iter.zip(s.chars()).for_each(|(i, c)| arr[i].push(c));
+    arr.into_iter().collect()
+}
+
+pub fn has_alternating_bits(n: i32) -> bool {
+    // println!(
+    //     "{:#b}\n{:#b}\n{:#b}\n{:#b}",
+    //     n,
+    //     n >> 1,
+    //     n ^ (n >> 1),
+    //     (n ^ (n >> 1)) & ((n ^ (n >> 1)) + 1)
+    // );
+    let a = n ^ (n >> 1);
+    a & (a + 1) == 0
+}
+
+pub fn reverse(x: i32) -> i32 {
+    let mut x: String = x.to_string().chars().rev().collect();
+    if !x.ends_with("-") {
+        return x.parse::<i32>().unwrap_or(0);
+    }
+    x.pop();
+    -x.parse::<i32>().unwrap_or(0)
+}
+
+pub fn is_palindrome(x: i32) -> bool {
+    let x: String = x.to_string();
+    let y: String = x.chars().rev().collect();
+    x == y
 }

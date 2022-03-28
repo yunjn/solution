@@ -159,7 +159,7 @@ mod solution_tests {
     }
 
     #[test]
-    fn test_682() {
+    fn test_0682() {
         assert_eq!(
             cal_points(vec![
                 "5".to_string(),
@@ -186,5 +186,50 @@ mod solution_tests {
         );
 
         assert_eq!(cal_points(vec!["1".to_string()]), 1);
+    }
+
+    #[test]
+    fn test_0006() {
+        assert_eq!(
+            convert("PAYPALISHIRING".to_string(), 3),
+            "PAHNAPLSIIGYIR".to_string()
+        );
+        assert_eq!(
+            convert("PAYPALISHIRING".to_string(), 4),
+            "PINALSIGYAHRPI".to_string()
+        );
+        assert_eq!(convert("A".to_string(), 1), "A");
+
+        assert_eq!(
+            convert_1("PAYPALISHIRING".to_string(), 3),
+            "PAHNAPLSIIGYIR".to_string()
+        );
+        assert_eq!(
+            convert_1("PAYPALISHIRING".to_string(), 4),
+            "PINALSIGYAHRPI".to_string()
+        );
+        assert_eq!(convert_1("A".to_string(), 1), "A");
+    }
+
+    #[test]
+    fn test_0693() {
+        assert_eq!(has_alternating_bits(5), true);
+        assert_eq!(has_alternating_bits(7), false);
+        assert_eq!(has_alternating_bits(11), false);
+    }
+
+    #[test]
+    fn test_0007() {
+        assert_eq!(reverse(0), 0);
+        assert_eq!(reverse(123), 321);
+        assert_eq!(reverse(-123), -321);
+        assert_eq!(reverse(120), 21);
+    }
+
+    #[test]
+    fn test_0009() {
+        assert_eq!(is_palindrome(121), true);
+        assert_eq!(is_palindrome(-121), false);
+        assert_eq!(is_palindrome(10), false);
     }
 }
