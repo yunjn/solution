@@ -232,4 +232,20 @@ mod solution_tests {
         assert_eq!(is_palindrome(-121), false);
         assert_eq!(is_palindrome(10), false);
     }
+
+    #[test]
+    fn test_2024() {
+        assert_eq!(max_consecutive_answers("TTFF".to_string(), 2), 4);
+        assert_eq!(max_consecutive_answers("TFFT".to_string(), 1), 3);
+        assert_eq!(max_consecutive_answers("TTFTTFTT".to_string(), 1), 5);
+    }
+
+    #[test]
+    fn test_0728() {
+        assert_eq!(
+            self_dividing_numbers(1, 22),
+            vec![1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 15, 22]
+        );
+        assert_eq!(self_dividing_numbers(47, 85), vec![48, 55, 66, 77]);
+    }
 }
