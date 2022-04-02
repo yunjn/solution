@@ -248,4 +248,11 @@ mod solution_tests {
         );
         assert_eq!(self_dividing_numbers(47, 85), vec![48, 55, 66, 77]);
     }
+
+    #[test]
+    fn test_0420() {
+        assert_eq!(strong_password_checker("a".to_string()), 5);
+        assert_eq!(strong_password_checker("aA1".to_string()), 3);
+        assert_eq!(strong_password_checker("1337C0d3".to_string()), 0);
+    }
 }

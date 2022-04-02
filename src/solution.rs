@@ -438,3 +438,83 @@ pub fn self_dividing_numbers(left: i32, right: i32) -> Vec<i32> {
     }
     ans
 }
+
+pub fn strong_password_checker(password: String) -> i32 {
+    let len = password.len();
+    let (mut has_lower, mut has_upper, mut has_digit) = (0, 0, 0);
+    for ch in password.chars() {
+        if ch.is_lowercase() {
+            has_lower = 1;
+        } else if ch.is_uppercase() {
+            has_upper = 1;
+        } else if ch.is_digit(10) {
+            has_digit = 1;
+        }
+    }
+
+    let categories = has_lower + has_upper + has_digit;
+
+    if len < 6 {
+        return (6 - len).max(3 - categories) as i32;
+    } else if len <= 20 {
+        let (mut replace, mut cnt) = (0, 0);
+        let mut cur = '#';
+
+        for ch in password.chars() {
+            if ch == cur {
+                cnt += 1;
+            } else {
+                replace += cnt / 3;
+                cnt = 1;
+                cur = ch;
+            }
+        }
+
+        replace += cnt / 3;
+        return replace.max(3 - categories as i32);
+    } else {
+        let (mut replace, mut rm) = (0, len - 20);
+        let (mut rm2, mut cnt) = (0, 0);
+        let mut cur = '#';
+
+        for ch in password.chars() {
+            if ch == cur {
+                cnt += 1;
+            } else {
+                if rm > 0 && cnt >= 3 {
+                    if cnt % 3 == 0 {
+                        rm -= 1;
+                        replace -= 1;
+                    } else if cnt % 3 == 1 {
+                        rm2 += 1;
+                    }
+                }
+
+                replace += cnt / 3;
+                cnt = 1;
+                cur = ch;
+            }
+        }
+
+        if rm > 0 && cnt >= 3 {
+            if cnt % 3 == 0 {
+                rm -= 1;
+                replace -= 1;
+            } else if cnt % 3 == 1 {
+                rm2 += 1
+            }
+        }
+
+        replace += cnt / 3;
+
+        let use2 = replace.min(rm2).min(rm / 2);
+        replace -= use2;
+        rm -= use2 * 2;
+
+        let use3 = replace.min(rm / 3);
+        replace -= use3;
+        rm -= use3 * 3;
+
+        return (len as i32 - 20) + replace.max(3 - categories) as i32;
+    }
+}
