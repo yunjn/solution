@@ -255,4 +255,15 @@ mod solution_tests {
         assert_eq!(strong_password_checker("aA1".to_string()), 3);
         assert_eq!(strong_password_checker("1337C0d3".to_string()), 0);
     }
+
+    #[test]
+    fn test_0744() {
+        assert_eq!(next_greatest_letter(vec!['c', 'f', 'j'], 'a'), 'c');
+        assert_eq!(next_greatest_letter(vec!['c', 'f', 'j'], 'c'), 'f');
+        assert_eq!(next_greatest_letter(vec!['c', 'f', 'j'], 'd'), 'f');
+
+        assert_eq!(next_greatest_letter_1(vec!['c', 'f', 'j'], 'a'), 'c');
+        assert_eq!(next_greatest_letter_1(vec!['c', 'f', 'j'], 'c'), 'f');
+        assert_eq!(next_greatest_letter_1(vec!['c', 'f', 'j'], 'd'), 'f');
+    }
 }

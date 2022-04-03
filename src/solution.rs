@@ -518,3 +518,24 @@ pub fn strong_password_checker(password: String) -> i32 {
         return (len as i32 - 20) + replace.max(3 - categories) as i32;
     }
 }
+
+// use std::convert::identity;
+// let iter = vec![Some(1), None, Some(3)].into_iter();
+// let filtered = iter.filter_map(identity).collect::<Vec<_>>();
+// assert_eq!(vec![1, 3], filtered);
+
+pub fn next_greatest_letter(letters: Vec<char>, target: char) -> char {
+    for letter in letters.iter() {
+        if letter > &target {
+            return *letter;
+        }
+    }
+    return letters[0];
+}
+
+pub fn next_greatest_letter_1(letters: Vec<char>, target: char) -> char {
+    let idx = letters
+        .binary_search(&((u32::from(target) + 1) as u8).into())
+        .unwrap_or_else(std::convert::identity);
+    letters[idx % letters.len()]
+}
